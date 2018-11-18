@@ -1,1 +1,2 @@
 LABELED_DATA_PATH_VINE = "/Users/rahatibnrafiq/Research/cyberbullying_dataset/vine_labeled_data/"
+LABELED_DATA_PATH_INSTAGRAM = "/Users/rahatibnrafiq/Research/cyberbullying_dataset/instagram_labeled_data/"

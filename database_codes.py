@@ -1,4 +1,5 @@
 import pymongo as mongo
+import csv
 
 client = mongo.MongoClient('localhost', 27017)
 
@@ -135,3 +136,12 @@ def updateIsPredictedFieldPostCollection(value, databaseName, collectionName, po
                 collection.update({'_id': documentid}, {'$set': {'isPredicted': value}})
             except Exception as e:
                 print(str(e) + " in updating field")
+
+
+def insert_csv_to_database(database_name, collection_name, filepath):
+    db = client[database_name]
+    collection = db[collection_name]
+    with open(filepath, encoding="utf8", errors='ignore') as csvfile:
+        csvreader = csv.DictReader(csvfile)
+        for row in csvreader:
+            collection.insert_one(row)

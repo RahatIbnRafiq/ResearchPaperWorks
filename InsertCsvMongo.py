@@ -1,17 +1,13 @@
-from pymongo import MongoClient
+import database_codes as db_codes
 import constants
-import csv
 
-def insertCsvFileMongo(filename):
-    connection = MongoClient()
-    db = connection["vine"]
-    collection = db["labeled_media_session"]
-    with open(constants.LABELED_DATA_PATH_VINE + filename, 'r') as csvfile:
-        csvreader = csv.DictReader(csvfile)
-        for row in csvreader:
-            collection.insert_one(row)
-            break
+# adding vine labeled data
+
+db_codes.insert_csv_to_database("vine", "labeled_media_sessions", constants.LABELED_DATA_PATH_VINE+"vine_meta_data.csv")
 
 
+# adding instagram labeled data
 
-insertCsvFileMongo("vine_meta_data.csv")
+file_list = ["sessions_0plus_to_10_metadata.csv", "sessions_10plus_to_40_metadata.csv", "sessions_40plus_metadata.csv"]
+for file in file_list:
+    db_codes.insert_csv_to_database("instagram", "labeled_media_sessions", constants.LABELED_DATA_PATH_INSTAGRAM+file)
