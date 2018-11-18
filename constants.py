@@ -1,0 +1,1 @@
+LABELED_DATA_PATH_VINE = "/Users/rahatibnrafiq/Research/cyberbullying_dataset/vine_labeled_data/"
